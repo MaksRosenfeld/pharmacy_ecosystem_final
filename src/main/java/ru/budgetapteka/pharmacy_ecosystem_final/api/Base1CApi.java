@@ -5,7 +5,7 @@ import ru.budgetapteka.pharmacy_ecosystem_final.exceptions.NoSuchBase1CException
 
 public class Base1CApi extends Api {
     @Override
-    Connection createConnection(Source source) {
+    public Connection createConnection(Source source) {
         if (source.equals(Source.BASE_FINANCE)) {
             return new FinanceBase1C();
         } else if (source.equals(Source.BASE_SALARY)) {

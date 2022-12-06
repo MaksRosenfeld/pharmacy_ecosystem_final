@@ -1,4 +1,4 @@
 package ru.budgetapteka.pharmacy_ecosystem_final.api;
 
-public class SalaryBase1C extends Connection {
+public abstract class Base1C extends Connection {
 }

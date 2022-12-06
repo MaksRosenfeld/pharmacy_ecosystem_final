@@ -1,4 +1,12 @@
 package ru.budgetapteka.pharmacy_ecosystem_final.api;
 
-public abstract class Bank implements Connection {
+import org.springframework.http.HttpHeaders;
+
+public abstract class Bank extends Connection {
+
+    public Bank() {
+        createWebClient();
+    }
+
+    abstract HttpHeaders createHeaders(String token);
 }

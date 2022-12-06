@@ -27,4 +27,10 @@ class ApiTest {
 
     }
 
+    @DisplayName("Check on connection")
+    @Test
+    void checkConnection() {
+
+    }
+
 }
