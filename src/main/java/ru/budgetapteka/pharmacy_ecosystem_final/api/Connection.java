@@ -1,40 +1,39 @@
 package ru.budgetapteka.pharmacy_ecosystem_final.api;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.reactive.function.client.ExchangeStrategies;
+import com.fasterxml.jackson.databind.JsonNode;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@Slf4j
+import java.time.LocalDate;
+
+/**
+ * Class, that responsible for getting the data
+ * from sided api.
+ * T - type, that method getData() has to return
+ */
+@Getter(AccessLevel.PACKAGE)
+@Setter(AccessLevel.PACKAGE)
 public abstract class Connection {
+    private WebClient webClient;
 
-    WebClient webClient;
-
-    // template method
-    final JsonData getJson() {
-
-        return null;
+    /**
+     * Main method, that sends requests and gets
+     * the data in JsonNode
+     * @param dateFrom data to be from this date
+     * @param dateTo data to be up to this date
+     * @param request type of request (made with RequestFactory)
+     * @return all results come back in JsonNode
+     */
+    public JsonNode getData(LocalDate dateFrom, LocalDate dateTo, Request request) {
+        return request.getData(dateFrom, dateTo);
     }
 
-    void createWebClient() {
-        this.webClient = WebClient.builder().exchangeStrategies(ExchangeStrategies.builder()
-                        .codecs(configurer -> configurer
-                                .defaultCodecs()
-                                .maxInMemorySize(16 * 1024 * 1024))
-                        .build())
-                .build();
-    }
-
-    void setBaseUrl(String baseUrl) {
-        webClient
-                .options()
-                .uri(baseUrl);
-    }
-
-    void setHttpHeaders(HttpHeaders headers) {
-        webClient
-                .options()
-                .headers(httpHeaders -> httpHeaders.addAll(headers));
-    }
-
+    /**
+     * All components, that extend Connection
+     * have to establish their connection before
+     * being in ApplicationContext
+     */
+    protected abstract void establishConnection();
 }

@@ -1,0 +1,10 @@
+{
+  "data": {
+    "fromDate": "2019-07-01",
+    "toDate": "2019-07-09",
+    "accountId": 73475,
+    "statementId": 373737,
+    "status": "IN_PROGRESS",
+    "printFormat": "JSON"
+  }
+}
